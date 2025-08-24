@@ -1,3 +1,9 @@
+# docker-compose.yml
+x-sensor: &sensor_template
+  image: prom/node-exporter:latest
+  expose:
+    - "9100"
+
 services:
   inventory:
     build: ./inventory_server
@@ -5,15 +11,10 @@ services:
       - "1337:1337"
 
   sd-adapter:
-    image: python:3.12-slim
-    depends_on: [inventory]
-    working_dir: /app
-    volumes:
-      - ./adapter/app.py:/app/app.py:ro
+    build: ./adapter
     environment:
       INVENTORY_URL: http://inventory:1337/inventory
       SENSOR_PORT: "9100"
-    command: ["sh","-lc","pip install --no-cache-dir flask requests && python3 /app/app.py"]
     ports:
       - "8001:8001"
 
@@ -26,4 +27,106 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     ports:
       - "9090:9090"
-    depends_on: [sd-adapter]
+    depends_on:
+      - sd-adapter
+
+  sensor_0:  { <<: *sensor_template, container_name: sensor_0 }
+  sensor_1:  { <<: *sensor_template, container_name: sensor_1 }
+  sensor_2:  { <<: *sensor_template, container_name: sensor_2 }
+  sensor_3:  { <<: *sensor_template, container_name: sensor_3 }
+  sensor_4:  { <<: *sensor_template, container_name: sensor_4 }
+  sensor_5:  { <<: *sensor_template, container_name: sensor_5 }
+  sensor_6:  { <<: *sensor_template, container_name: sensor_6 }
+  sensor_7:  { <<: *sensor_template, container_name: sensor_7 }
+  sensor_8:  { <<: *sensor_template, container_name: sensor_8 }
+  sensor_9:  { <<: *sensor_template, container_name: sensor_9 }
+  sensor_10: { <<: *sensor_template, container_name: sensor_10 }
+  sensor_11: { <<: *sensor_template, container_name: sensor_11 }
+  sensor_12: { <<: *sensor_template, container_name: sensor_12 }
+  sensor_13: { <<: *sensor_template, container_name: sensor_13 }
+  sensor_14: { <<: *sensor_template, container_name: sensor_14 }
+  sensor_15: { <<: *sensor_template, container_name: sensor_15 }
+  sensor_16: { <<: *sensor_template, container_name: sensor_16 }
+  sensor_17: { <<: *sensor_template, container_name: sensor_17 }
+  sensor_18: { <<: *sensor_template, container_name: sensor_18 }
+  sensor_19: { <<: *sensor_template, container_name: sensor_19 }
+  sensor_20: { <<: *sensor_template, container_name: sensor_20 }
+  sensor_21: { <<: *sensor_template, container_name: sensor_21 }
+  sensor_22: { <<: *sensor_template, container_name: sensor_22 }
+  sensor_23: { <<: *sensor_template, container_name: sensor_23 }
+  sensor_24: { <<: *sensor_template, container_name: sensor_24 }
+  sensor_25: { <<: *sensor_template, container_name: sensor_25 }
+  sensor_26: { <<: *sensor_template, container_name: sensor_26 }
+  sensor_27: { <<: *sensor_template, container_name: sensor_27 }
+  sensor_28: { <<: *sensor_template, container_name: sensor_28 }
+  sensor_29: { <<: *sensor_template, container_name: sensor_29 }
+  sensor_30: { <<: *sensor_template, container_name: sensor_30 }
+  sensor_31: { <<: *sensor_template, container_name: sensor_31 }
+  sensor_32: { <<: *sensor_template, container_name: sensor_32 }
+  sensor_33: { <<: *sensor_template, container_name: sensor_33 }
+  sensor_34: { <<: *sensor_template, container_name: sensor_34 }
+  sensor_35: { <<: *sensor_template, container_name: sensor_35 }
+  sensor_36: { <<: *sensor_template, container_name: sensor_36 }
+  sensor_37: { <<: *sensor_template, container_name: sensor_37 }
+  sensor_38: { <<: *sensor_template, container_name: sensor_38 }
+  sensor_39: { <<: *sensor_template, container_name: sensor_39 }
+  sensor_40: { <<: *sensor_template, container_name: sensor_40 }
+  sensor_41: { <<: *sensor_template, container_name: sensor_41 }
+  sensor_42: { <<: *sensor_template, container_name: sensor_42 }
+  sensor_43: { <<: *sensor_template, container_name: sensor_43 }
+  sensor_44: { <<: *sensor_template, container_name: sensor_44 }
+  sensor_45: { <<: *sensor_template, container_name: sensor_45 }
+  sensor_46: { <<: *sensor_template, container_name: sensor_46 }
+  sensor_47: { <<: *sensor_template, container_name: sensor_47 }
+  sensor_48: { <<: *sensor_template, container_name: sensor_48 }
+  sensor_49: { <<: *sensor_template, container_name: sensor_49 }
+  sensor_50: { <<: *sensor_template, container_name: sensor_50 }
+  sensor_51: { <<: *sensor_template, container_name: sensor_51 }
+  sensor_52: { <<: *sensor_template, container_name: sensor_52 }
+  sensor_53: { <<: *sensor_template, container_name: sensor_53 }
+  sensor_54: { <<: *sensor_template, container_name: sensor_54 }
+  sensor_55: { <<: *sensor_template, container_name: sensor_55 }
+  sensor_56: { <<: *sensor_template, container_name: sensor_56 }
+  sensor_57: { <<: *sensor_template, container_name: sensor_57 }
+  sensor_58: { <<: *sensor_template, container_name: sensor_58 }
+  sensor_59: { <<: *sensor_template, container_name: sensor_59 }
+  sensor_60: { <<: *sensor_template, container_name: sensor_60 }
+  sensor_61: { <<: *sensor_template, container_name: sensor_61 }
+  sensor_62: { <<: *sensor_template, container_name: sensor_62 }
+  sensor_63: { <<: *sensor_template, container_name: sensor_63 }
+  sensor_64: { <<: *sensor_template, container_name: sensor_64 }
+  sensor_65: { <<: *sensor_template, container_name: sensor_65 }
+  sensor_66: { <<: *sensor_template, container_name: sensor_66 }
+  sensor_67: { <<: *sensor_template, container_name: sensor_67 }
+  sensor_68: { <<: *sensor_template, container_name: sensor_68 }
+  sensor_69: { <<: *sensor_template, container_name: sensor_69 }
+  sensor_70: { <<: *sensor_template, container_name: sensor_70 }
+  sensor_71: { <<: *sensor_template, container_name: sensor_71 }
+  sensor_72: { <<: *sensor_template, container_name: sensor_72 }
+  sensor_73: { <<: *sensor_template, container_name: sensor_73 }
+  sensor_74: { <<: *sensor_template, container_name: sensor_74 }
+  sensor_75: { <<: *sensor_template, container_name: sensor_75 }
+  sensor_76: { <<: *sensor_template, container_name: sensor_76 }
+  sensor_77: { <<: *sensor_template, container_name: sensor_77 }
+  sensor_78: { <<: *sensor_template, container_name: sensor_78 }
+  sensor_79: { <<: *sensor_template, container_name: sensor_79 }
+  sensor_80: { <<: *sensor_template, container_name: sensor_80 }
+  sensor_81: { <<: *sensor_template, container_name: sensor_81 }
+  sensor_82: { <<: *sensor_template, container_name: sensor_82 }
+  sensor_83: { <<: *sensor_template, container_name: sensor_83 }
+  sensor_84: { <<: *sensor_template, container_name: sensor_84 }
+  sensor_85: { <<: *sensor_template, container_name: sensor_85 }
+  sensor_86: { <<: *sensor_template, container_name: sensor_86 }
+  sensor_87: { <<: *sensor_template, container_name: sensor_87 }
+  sensor_88: { <<: *sensor_template, container_name: sensor_88 }
+  sensor_89: { <<: *sensor_template, container_name: sensor_89 }
+  sensor_90: { <<: *sensor_template, container_name: sensor_90 }
+  sensor_91: { <<: *sensor_template, container_name: sensor_91 }
+  sensor_92: { <<: *sensor_template, container_name: sensor_92 }
+  sensor_93: { <<: *sensor_template, container_name: sensor_93 }
+  sensor_94: { <<: *sensor_template, container_name: sensor_94 }
+  sensor_95: { <<: *sensor_template, container_name: sensor_95 }
+  sensor_96: { <<: *sensor_template, container_name: sensor_96 }
+  sensor_97: { <<: *sensor_template, container_name: sensor_97 }
+  sensor_98: { <<: *sensor_template, container_name: sensor_98 }
+  sensor_99: { <<: *sensor_template, container_name: sensor_99 }
